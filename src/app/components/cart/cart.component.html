@@ -1,0 +1,38 @@
+<ng-container *ngIf="totalPrice === 0 ; else showCart">
+  <div class="center-content">
+    You don't have products yet. <br />Please make sure you add articles to your cart.
+  </div>  
+</ng-container>
+
+<ng-template #showCart>
+  <div class="shopping-cart">
+
+    <div class="column-labels">
+      <label class="product-image">Image</label>
+      <label class="product-details">Product</label>
+      <label class="product-price">Price</label>
+      <label class="product-quantity">Quantity</label>
+    </div>
+
+    <div class="product" *ngFor="let article of articles" >
+      <div class="product-image">
+        <img src="{{ article.product.photo }}">
+      </div>
+      <div class="product-details">
+        <div class="product-title">{{ article.product.title }}</div>
+        <p class="product-description">{{ article.product.description }}</p>
+      </div>
+      <div class="product-price"> {{ article.product.price }}</div>
+      <div class="product-quantity">
+        <span>{{ article.qte }}</span><br />
+        <button (click)="increment(article.product)">+</button>
+        <button (click)="decrement(article.product)">-</button>
+      </div>
+    </div>
+
+    <p><strong>Total : $ {{ totalPrice }}</strong></p>
+
+    <button class="checkout" (click)="validate()" >Checkout</button>
+
+  </div>
+</ng-template>

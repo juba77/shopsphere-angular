@@ -1,0 +1,120 @@
+<link
+  href="https://fonts.googleapis.com/css?family=Open+Sans:400,300"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link
+  rel="stylesheet"
+  href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+/>
+
+<div class="container">
+  <div id="Checkout" class="inline">
+    <h1>Pay Invoice</h1>
+    <div class="card-row">
+      <span class="visa"></span>
+      <span class="mastercard"></span>
+      <span class="amex"></span>
+      <span class="discover"></span>
+    </div>
+    <form [formGroup]="paymentForm" (ngSubmit)="onCheckout()">
+      <div class="form-group">
+        <label for="PaymentAmount">Payment amount</label>
+        <div class="amount-placeholder">
+          <span>$</span>
+          <span>{{ amount }}</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="cardHolder">Name on card</label>
+        <input
+          id="cardHolder"
+          name="cardHolder"
+          formControlName="cardHolder"
+          class="form-control"
+          type="text"
+          maxlength="25"
+          [ngClass]="{
+            'error-border':
+              paymentForm.get('cardHolder')?.invalid &&
+              (isFormSubmitted ||
+                paymentForm.get('cardHolder')?.dirty ||
+                paymentForm.get('cardHolder')?.touched)
+          }"
+        />
+      </div>
+      <div class="form-group">
+        <label for="cardNumber">Card number</label>
+        <input
+          id="cardNumber"
+          name="cardNumber"
+          formControlName="cardNumber"
+          class="null card-image form-control"
+          type="text"
+          maxlength="16"
+          [ngClass]="{
+            'error-border':
+              paymentForm.get('cardNumber')?.invalid &&
+              (isFormSubmitted ||
+                paymentForm.get('cardNumber')?.dirty ||
+                paymentForm.get('cardNumber')?.touched)
+          }"
+        />
+      </div>
+      <div class="expiry-date-group form-group">
+        <label for="expDate">Expiry date</label>
+        <input
+          id="expDate"
+          name="expDate"
+          formControlName="expDate"
+          class="form-control"
+          type="text"
+          placeholder="MM/YY"
+          maxlength="5"
+          [ngClass]="{
+            'error-border':
+              paymentForm.get('expDate')?.invalid &&
+              (isFormSubmitted ||
+                paymentForm.get('expDate')?.dirty ||
+                paymentForm.get('expDate')?.touched)
+          }"
+        />
+      </div>
+      <div class="security-code-group form-group">
+        <label for="code">Security code</label>
+        <div class="input-container">
+          <input
+            id="code"
+            name="code"
+            formControlName="code"
+            class="form-control"
+            type="text"
+            maxlength="3"
+            [ngClass]="{
+              'error-border':
+                paymentForm.get('code')?.invalid &&
+                (isFormSubmitted ||
+                  paymentForm.get('code')?.dirty ||
+                  paymentForm.get('code')?.touched)
+            }"
+          />
+          <i id="cvc" class="fa fa-question-circle"></i>
+        </div>
+        <div class="cvc-preview-container two-card hide">
+          <div class="amex-cvc-preview"></div>
+          <div class="visa-mc-dis-cvc-preview"></div>
+        </div>
+      </div>
+
+      <button
+        id="PayButton"
+        class="btn btn-block btn-success submit-button"
+        type="submit"
+      >
+        <span class="submit-button-lock"></span>
+        <span class="align-middle">Pay ${{ amount }}</span>
+      </button>
+    </form>
+  </div>
+</div>
+<br /><br /><br />

@@ -1,0 +1,175 @@
+<section>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <span></span> <span></span> <span></span> <span></span> <span></span>
+  <div class="signin">
+    <div class="content">
+      <h2>Update My Information</h2>
+      <form [formGroup]="userUpdateForm" (ngSubmit)="onSubmit()" class="form">
+        <div
+          class="inputBox"
+          [ngClass]="{
+            'error-border':
+              user.role === role.Buyer &&
+              userUpdateForm.get('firstName')?.invalid &&
+              (isFormSubmitted ||
+                userUpdateForm.get('firstName')?.dirty ||
+                userUpdateForm.get('firstName')?.touched)
+          }"
+        >
+          <input
+            required
+            type="text"
+            id="firstName"
+            name="firstName"
+            formControlName="firstName"
+            maxlength="50"
+          />
+          <i>FirstName</i>
+        </div>
+
+        <div
+          class="inputBox"
+          [ngClass]="{
+            'error-border':
+              user.role === role.Buyer &&
+              userUpdateForm.get('lastName')?.invalid &&
+              (isFormSubmitted ||
+                userUpdateForm.get('lastName')?.dirty ||
+                userUpdateForm.get('lastName')?.touched)
+          }"
+        >
+          <input
+            required
+            type="text"
+            id="lastName"
+            name="lastName"
+            formControlName="lastName"
+            maxlength="50"
+          />
+          <i>LastName</i>
+        </div>
+        <div
+          *ngIf="user.role === role.Admin"
+          class="inputBox"
+          [ngClass]="{
+            'error-border':
+              user.role !== role.Admin &&
+              userUpdateForm.get('email')?.invalid &&
+              (isFormSubmitted ||
+                userUpdateForm.get('email')?.dirty ||
+                userUpdateForm.get('email')?.touched)
+          }"
+        >
+          <input
+            required
+            type="email"
+            id="email"
+            name="email"
+            formControlName="email"
+          />
+          <i>Email</i>
+        </div>
+
+        <div
+          *ngIf="user.role === role.Buyer"
+          class="inputBox"
+          [ngClass]="{
+            'error-border':
+              user.role === role.Buyer &&
+              userUpdateForm.get('address')?.invalid &&
+              (isFormSubmitted ||
+                userUpdateForm.get('address')?.dirty ||
+                userUpdateForm.get('address')?.touched)
+          }"
+        >
+          <input
+            required
+            type="text"
+            id="address"
+            name="address"
+            formControlName="address"
+            maxlength="150"
+          />
+          <i>Adress</i>
+        </div>
+
+        <div
+          *ngIf="user.role === role.Buyer"
+          class="inputBox"
+          [ngClass]="{
+            'error-border':
+              user.role === role.Buyer &&
+              userUpdateForm.get('password')?.invalid &&
+              (isFormSubmitted ||
+                userUpdateForm.get('password')?.dirty ||
+                userUpdateForm.get('password')?.touched)
+          }"
+        >
+          <input
+            required
+            type="password"
+            id="password"
+            name="password"
+            formControlName="password"
+            maxlength="50"
+          />
+          <i>Password</i>
+        </div>
+
+        <div *ngIf="user.role === role.Buyer" class="inputBox">
+          <input type="submit" value="Update" />
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

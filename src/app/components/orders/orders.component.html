@@ -1,0 +1,32 @@
+<ng-container *ngIf="!ordersList.length; else showOrders">
+  <div class="center-content">
+    You don't have order yet. <br />Please make sure you add articles to your
+    cart and purchase a payment.
+  </div>  
+</ng-container>
+
+<ng-template #showOrders>
+  <div class="shopping-cart">
+
+    <div class="column-labels">
+      <label class="product-details">Products</label>
+      <label class="product-quantity">Date</label>
+      <label class="product-quantity">State</label>
+      <label class="product-quantity">Adress</label>
+    </div>
+
+    <div class="product" *ngFor="let order of ordersList" >
+
+      <div class="product-details">
+        <ul *ngFor="let article of order.articles">
+          <li class="product-description">{{ article.title }}. <a [routerLink]="['/products', article.id]">See more</a> </li>
+        </ul>
+      </div>
+      <div class="product-quantity"> {{ order.date }}</div>
+      <div class="product-quantity">
+        <span style="color: green;"> Success </span>
+      </div>
+      <div class="product-quantity"> {{ order.client.address }}</div>
+    </div>
+  </div>
+</ng-template>

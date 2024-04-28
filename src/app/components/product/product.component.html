@@ -1,0 +1,29 @@
+<section class="wrap-3d">
+  <div class="item-3d">
+    <span class="ground"></span>
+    <figure class="item-content group">
+      <div class="item-img">
+        <img [src]="product.photo" style="margin-bottom: 100px;"/>
+      </div>
+      <figcaption class="item-caption" style="margin-bottom: 100px;">
+        <h1>{{ product.title }}</h1>
+        <br /><br />
+        <p>{{ product.description }}</p>
+        <div *ngIf="isUserConnected() && user.role === role.Admin">
+          <h5><strong>Actual stock: {{ product.quantity }}</strong></h5>
+          <br>
+          <button class="button-59" type="button" style="width: auto" (click)="increaseStock()">
+            Increase stock
+          </button>
+          <br><br>
+          <button class="button-59" type="button" style="width: auto" (click)="decreaseStock()">
+            Decrease stock
+          </button>
+        </div>
+        <br>
+        <h1 *ngIf="isUserConnected() && user.role === role.Admin" style="margin-bottom: 100px;">$ {{ product.price }}</h1>
+        <h1 *ngIf="(isUserConnected() && user.role != role.Admin) || !isUserConnected()">$ {{ product.price }}</h1>
+      </figcaption>
+    </figure>
+  </div>
+</section>
